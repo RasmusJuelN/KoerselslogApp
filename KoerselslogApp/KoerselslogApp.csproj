@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\alley.jpg" />
+    <None Remove="Images\left-arrow.png" />
+    <None Remove="Images\lock.png" />
+    <None Remove="Images\profile.png" />
+    <None Remove="Images\Route.png" />
+    <None Remove="Images\RouteLogo1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\alley.jpg" />
+    <Resource Include="Images\left-arrow.png" />
+    <Resource Include="Images\lock.png" />
+    <Resource Include="Images\profile.png" />
+    <Resource Include="Images\Route.png" />
+    <Resource Include="Images\RouteLogo1.png" />
+  </ItemGroup>
+
+</Project>
