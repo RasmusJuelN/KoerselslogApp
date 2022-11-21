@@ -17,13 +17,13 @@ namespace KoerselslogApp.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         // Fields
-        private string _username;
-        private SecureString _password;
-        private string _errorMessage;
+        private string? _username;
+        private SecureString? _password;
+        private string? _errorMessage;
         private bool _isViewVisible = true;
 
         private IUserRepository userRepository;
-        public string Username
+        public string? Username
         { 
             get 
             { 
@@ -37,7 +37,7 @@ namespace KoerselslogApp.ViewModels
             }
         }
 
-        public SecureString Password
+        public SecureString? Password
         {
             get
             {
@@ -51,7 +51,7 @@ namespace KoerselslogApp.ViewModels
             }
         }
 
-        public string ErrorMessage
+        public string? ErrorMessage
         {
             get
             {
@@ -101,7 +101,7 @@ namespace KoerselslogApp.ViewModels
             bool validData;
             if (string.IsNullOrWhiteSpace(Username) || Username.Length<3 || Password == null || Password.Length < 3)
             {
-                validData = false;   
+                validData = false;
             }
             else
             {

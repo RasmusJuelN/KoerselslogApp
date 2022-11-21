@@ -16,7 +16,7 @@ namespace KoerselslogApp.Repositories
             _connectionString = @"Server=192.168.23.122, 1433;Initial Catalog=KoerselslogAppDB;Persist Security Info=True;User ID=sa;Password=Rambam111";
         }
 
-        protected SqlConnection GetConnection()
+        protected SqlConnection GetSqlConnection()
         {
             return new SqlConnection(_connectionString);
         }
