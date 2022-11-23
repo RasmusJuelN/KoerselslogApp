@@ -18,16 +18,20 @@ namespace KoerselslogApp
         {
             var loginView = new LoginView();
             loginView.Show();
+
             loginView.IsVisibleChanged += (s, ev) =>
               {
                   if (loginView.IsVisible == false && loginView.IsLoaded)
                   {
+
                       var userView = new UserView();
                       userView.Show();
                       loginView.Close();
                   }
 
               };
+
+
         }
     }
 }

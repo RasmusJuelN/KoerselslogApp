@@ -20,8 +20,10 @@ namespace KoerselslogApp.ViewModels
         private string? _username;
         private SecureString? _password;
         private string? _errorMessage;
-        private bool _isViewVisible = true;
+        private bool _isUserViewVisible = true;
+        private bool _isAdminViewVisible = true;
 
+        private IAdminRepository adminRepository;
         private IUserRepository userRepository;
         public string? Username
         { 
@@ -65,20 +67,33 @@ namespace KoerselslogApp.ViewModels
             }
         }
 
-        public bool IsViewVisible
+        public bool IsUserViewVisible
         {
             get
             {
-                return _isViewVisible;
+                return _isUserViewVisible;
             }
 
             set
             {
-                _isViewVisible = value;
-                OnPropertyChanged(nameof(IsViewVisible));
+                _isUserViewVisible = value;
+                OnPropertyChanged(nameof(IsUserViewVisible));
             }
         }
 
+        public bool IsAdminViewVisible
+        {
+            get
+            {
+                return _isAdminViewVisible;
+            }
+
+            set
+            {
+                _isAdminViewVisible = value;
+                OnPropertyChanged(nameof(IsAdminViewVisible));
+            }
+        }
         // -> Commands
         public ICommand LoginCommand { get;  }
         public ICommand RecoverPasswordCommand { get; }
@@ -91,15 +106,14 @@ namespace KoerselslogApp.ViewModels
         public LoginViewModel()
         {
             userRepository = new UserRepository();
+            adminRepository = new AdminRepository();
             LoginCommand = new ViewModelCommands(ExecuteLoginCommand, CanExecuteLoginCommand);
-            RecoverPasswordCommand = new ViewModelCommands(p => ExecuteRecoverPasswordCommand("",""));
-
         }
 
         private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;
-            if (string.IsNullOrWhiteSpace(Username) || Username.Length<3 || Password == null || Password.Length < 3)
+            if (string.IsNullOrWhiteSpace(Username) || Username == null || Password == null)
             {
                 validData = false;
             }
@@ -107,7 +121,6 @@ namespace KoerselslogApp.ViewModels
             {
                 validData = true;
             }
-
             return validData;
                
         }
@@ -115,20 +128,30 @@ namespace KoerselslogApp.ViewModels
         private void ExecuteLoginCommand(object obj)
         {
             var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
+
+            
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(
-                    new GenericIdentity(Username), null);
-                IsViewVisible = false;
-            }
-            else
-            {
-                MessageBox.Show("nope");
-                ErrorMessage = "* Invalid Username or Password.";
+                new GenericIdentity(Username), null);
+                IsUserViewVisible = false;
             }
 
-        }
-        
+            var isValidAdmin = adminRepository.AuthenticateUser(new NetworkCredential(Username, Password));
+            if (isValidAdmin)
+            {
+                Thread.CurrentPrincipal = new GenericPrincipal(
+                new GenericIdentity(Username), null);
+                IsAdminViewVisible = false;
+            }
+
+            else
+            {
+                ErrorMessage = "Forkert Username eller Password.";
+                MessageBox.Show("Ugyldigt login");
+            }
+
+        }        
 
         private void ExecuteRecoverPasswordCommand(string username, string email)
         {

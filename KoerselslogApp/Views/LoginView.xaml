@@ -226,7 +226,7 @@
                                FontWeight="Medium"
                                FontSize="15"
                                Margin="0,5,0,0"                               
-                               TextWrapping="Wrap"/>
+                               />
 
                     <Button x:Name="btnLogin"
                             Command="{Binding LoginCommand}"

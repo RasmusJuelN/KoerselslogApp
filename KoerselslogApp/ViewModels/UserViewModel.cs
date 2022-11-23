@@ -36,7 +36,6 @@ namespace KoerselslogApp.ViewModels
         {
             userRepository = new UserRepository();
             LoadCurrentUserData();
-
         }
 
         private void LoadCurrentUserData()
@@ -47,7 +46,7 @@ namespace KoerselslogApp.ViewModels
                 CurrentUserAccount = new UserAccountModel()
                 {
                     Username = user.Username,
-                    DisplayName = $"Velkommen {user.FirstName} {user.LastName}"
+                    DisplayName = $"Bruger: {user.FirstName} {user.LastName}"
                 };
             }
             
