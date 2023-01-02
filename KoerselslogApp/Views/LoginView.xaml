@@ -15,7 +15,8 @@
         MouseDown="Window_MouseDown"
         Background="Transparent"
         AllowsTransparency="True"
-        Icon="/Images/RouteLogo1.png">
+        Icon="/Images/RouteLogo1.png"
+        x:Name="TheLoginView">
 
     <Window.DataContext>
         <viewModel:LoginViewModel/>
@@ -237,7 +238,8 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             Grid.Column="2"
-                            Margin="0,5,0,0">
+                            Margin="0,5,0,0"
+                           >
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#FF6F48FF"/>

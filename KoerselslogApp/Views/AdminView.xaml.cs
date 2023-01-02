@@ -1,5 +1,4 @@
-﻿using KoerselslogApp.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,22 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-
 namespace KoerselslogApp.Views
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for AdminView.xaml
     /// </summary>
-    public partial class LoginView : Window, IClosable
+    public partial class AdminView : Window
     {
-        
-        public LoginView()
+        public AdminView()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel();
-
         }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -43,9 +37,16 @@ namespace KoerselslogApp.Views
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-            
         }
 
+        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        {
 
+            LoginView loginView = new LoginView();
+            loginView.Show();
+            this.Close();
+
+
+        }
     }
 }

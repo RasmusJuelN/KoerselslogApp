@@ -19,6 +19,7 @@
     <Window.DataContext>
         <viewModel:UserViewModel/>
     </Window.DataContext>
+
     <Border CornerRadius="23">
 
         <Border.Background>

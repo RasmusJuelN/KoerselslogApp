@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using KoerselslogApp.ViewModels;
+using System.Windows;
 using System.Windows.Input;
 
 namespace KoerselslogApp.Views
@@ -11,6 +12,8 @@ namespace KoerselslogApp.Views
         public UserView()
         {
             InitializeComponent();
+
+
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

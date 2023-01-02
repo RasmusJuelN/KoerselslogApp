@@ -1,33 +1,31 @@
-﻿
-using System;
-using System.Threading;
-using System.Windows;
-using System.Windows.Input;
-using KoerselslogApp.Models;
+﻿using KoerselslogApp.Models;
 using KoerselslogApp.Repositories;
+using System.Threading;
+using System.Windows.Input;
 
 namespace KoerselslogApp.ViewModels
 {
     internal class UserViewModel : ViewModelBase
     {
+        
 
         // Fields
         private UserAccountModel _currentUserAccount;
         private IUserRepository userRepository;
 
-        public UserAccountModel CurrentUserAccount 
-        { 
+        public UserAccountModel CurrentUserAccount
+        {
             get
             {
                 return _currentUserAccount;
-            } 
+            }
             set
             {
                 _currentUserAccount = value;
                 OnPropertyChanged(nameof(CurrentUserAccount));
             }
         }
-        
+
         // Commands
         public ICommand AddNewDriverLogCommand { get; }
 
@@ -41,20 +39,14 @@ namespace KoerselslogApp.ViewModels
         private void LoadCurrentUserData()
         {
             var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
-            if (user != null)
+
+            CurrentUserAccount = new UserAccountModel()
             {
-                CurrentUserAccount = new UserAccountModel()
-                {
-                    Username = user.Username,
-                    DisplayName = $"Bruger: {user.FirstName} {user.LastName}"
-                };
-            }
-            
-            else
-            {
-                MessageBox.Show("Bruger findes ikke.");
-            }
-            
+                Username = user.Username,
+                DisplayName = $"Logget ind som: {user.FirstName} {user.LastName}"
+            };
+
+
         }
     }
 }

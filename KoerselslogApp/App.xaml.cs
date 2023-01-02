@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
+
 namespace KoerselslogApp
 {
     /// <summary>
@@ -14,24 +15,24 @@ namespace KoerselslogApp
     /// </summary>
     public partial class App : Application
     {
-        protected void ApplicationStart(object sender, StartupEventArgs e)
-        {
-            var loginView = new LoginView();
-            loginView.Show();
+        //protected void ApplicationStart(object sender, StartupEventArgs e)
+        //{
+        //    var loginView = new LoginView();
+        //    loginView.Show();
 
-            loginView.IsVisibleChanged += (s, ev) =>
-              {
-                  if (loginView.IsVisible == false && loginView.IsLoaded)
-                  {
+        //    loginView.IsVisibleChanged += (s, ev) =>
+        //      {
+        //          if (loginView.IsVisible == false && loginView.IsLoaded)
+        //          {
 
-                      var userView = new UserView();
-                      userView.Show();
-                      loginView.Close();
-                  }
+        //              var userView = new UserView();
+        //              userView.Show();
+        //              loginView.Close();
+        //          }
 
-              };
+        //      };
 
 
-        }
+        //}
     }
 }
